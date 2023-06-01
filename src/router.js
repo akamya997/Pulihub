@@ -27,6 +27,10 @@ function insertData(inserter, data, res) {
     });
 }
 
+function validate(data) {
+    return data["type"] && data["uid"] && data["link"];
+}
+
 function route_api(pathname, req, res) {
   console.log(getTime() + " " + req.method + " " + pathname);
   if (pathname == "/api/data") {
@@ -41,14 +45,25 @@ function route_api(pathname, req, res) {
         data = data + chunk;
       });
       req.on("end", () => {
-        data = JSON.parse(data);
-        let type = data["type"];
-        if (type == "bhpan") {
-          insertData(bhpan.insertRecord, data, res);
-        } else if (type == "File") {
-          insertData(fileRecoder.insertRecord, data, res);
-        } else {
-          res.statusCode = 400;
+        try {
+            data = JSON.parse(data);
+            if(!validate(data)) {
+                res.statusCode = 200;
+                res.setHeader("Content-Type", "application/json");
+                res.end(JSON.stringify({ status: 200, message: "not valid" }));
+                return;
+            }
+            let type = data["type"];
+            if (type == "bhpan") {
+              insertData(bhpan.insertRecord, data, res);
+            } else if (type == "File") {
+              insertData(fileRecoder.insertRecord, data, res);
+            } else {
+              res.statusCode = 400;
+            }
+        } catch (e) {
+            console.log(e);
+            res.statusCode = 400;
         }
       });
     }
