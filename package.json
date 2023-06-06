@@ -4,7 +4,7 @@
   "description": "An online video hub.",
   "private": true,
   "scripts": {
-    "start": "node index.js",
+    "start": "npx ts-node --esm index.ts",
     "prettier": "npx prettier --write ."
   },
   "dependencies": {
