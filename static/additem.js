@@ -37,7 +37,7 @@ function submitItem() {
     type: "POST",
     url: "api/data",
     dataType: "json",
-    data: JSON.stringify(form_data),
+    data: form_data,
     success: function (data, status) {
       alert(data["message"]);
       closeAdd();

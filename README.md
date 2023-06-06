@@ -4,16 +4,18 @@ Pulihub is an online personal video hub for video proxy.
 
 It supports video proxy to different kinds of video source(bhpan, file, etc.).
 
-[Demo](https://akamya.moe/pulipuli/index.html) 
+[Demo](https://akamya.moe/pulipuli/index.html)
 
 ## How to run
 
 ### Install dependencies
+
 ```
 npm ci
 ```
 
 ### Run server
+
 ```
 npm start
 ```

@@ -2,15 +2,15 @@ import axios from "axios";
 import https from "https";
 import fs from "fs";
 
-function store(uid, record) {
+function store(uid: string, record: any) {
   console.log(`Store a record of uid ${uid}: `, record);
   fs.readFile("static/video.json", function (err, data) {
-    data = JSON.parse(data.toString());
-    data[uid] = record;
-    console.log(data);
+    let parsed_data = JSON.parse(data.toString());
+    parsed_data[uid] = record;
+    console.log(parsed_data);
     fs.writeFile(
       "static/video.json",
-      JSON.stringify(data, null, "\t"),
+      JSON.stringify(parsed_data, null, "\t"),
       function (err) {
         if (err) console.log(err);
         console.log("Store success.");
@@ -20,7 +20,7 @@ function store(uid, record) {
 }
 
 export let bhpan = {
-  getRecord: async (link) => {
+  getRecord: async (link: string) => {
     var url = "https://bhpan.buaa.edu.cn/api/v1/link?method=get";
     const httpsAgent = new https.Agent({ rejectUnauthorized: false });
     let res = await axios.post(
@@ -41,7 +41,7 @@ export let bhpan = {
       savename: data["name"],
     };
   },
-  insertRecord: async (data) => {
+  insertRecord: async (data: any) => {
     let link = data["link"];
     let postdata = await bhpan.getRecord(link);
     let newData = {
@@ -59,7 +59,7 @@ export let bhpan = {
 };
 
 export let fileRecoder = {
-  insertRecord: async (data) => {
+  insertRecord: async (data: any) => {
     let link = data["link"];
     let newData = {
       link: link,
