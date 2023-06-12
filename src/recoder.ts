@@ -4,8 +4,8 @@ import fs from "fs";
 
 function store(uid: string, record: any) {
   console.log(`Store a record of uid ${uid}: `, record);
-  fs.readFile("static/video.json", function (err, data) {
-    let parsed_data = JSON.parse(data.toString());
+  fs.readFile("static/video.json", function (_err, data) {
+    const parsed_data = JSON.parse(data.toString());
     parsed_data[uid] = record;
     console.log(parsed_data);
     fs.writeFile(
@@ -19,11 +19,11 @@ function store(uid: string, record: any) {
   });
 }
 
-export let bhpan = {
+export const bhpan = {
   getRecord: async (link: string) => {
-    var url = "https://bhpan.buaa.edu.cn/api/v1/link?method=get";
+    const url = "https://bhpan.buaa.edu.cn/api/v1/link?method=get";
     const httpsAgent = new https.Agent({ rejectUnauthorized: false });
-    let res = await axios.post(
+    const res = await axios.post(
       url,
       {
         link: link,
@@ -31,7 +31,7 @@ export let bhpan = {
       },
       { httpsAgent }
     );
-    var data = res.data;
+    const data = res.data;
     return {
       link: link,
       password: "",
@@ -42,9 +42,9 @@ export let bhpan = {
     };
   },
   insertRecord: async (data: any) => {
-    let link = data["link"];
-    let postdata = await bhpan.getRecord(link);
-    let newData = {
+    const link = data["link"];
+    const postdata = await bhpan.getRecord(link);
+    const newData = {
       postdata: postdata,
       poster: data["poster"],
       title: data["title"],
@@ -53,15 +53,15 @@ export let bhpan = {
       is_public: true,
       type: data["type"],
     };
-    let uid = data["uid"];
+    const uid = data["uid"];
     store(uid, newData);
   },
 };
 
-export let fileRecoder = {
+export const fileRecoder = {
   insertRecord: async (data: any) => {
-    let link = data["link"];
-    let newData = {
+    const link = data["link"];
+    const newData = {
       link: link,
       poster: data["poster"],
       title: data["title"],
@@ -70,7 +70,7 @@ export let fileRecoder = {
       is_public: true,
       type: data["type"],
     };
-    let uid = data["uid"];
+    const uid = data["uid"];
     store(uid, newData);
   },
 };

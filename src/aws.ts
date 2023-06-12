@@ -1,12 +1,19 @@
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 
+function getCredentials() {
+  if (process.env.accessKeyId == null || process.env.secretAccessKey == null) {
+    throw Error("AWS Credential is not set in .env");
+  }
+  return {
+    accessKeyId: process.env.accessKeyId,
+    secretAccessKey: process.env.secretAccessKey,
+  };
+}
+
 const client = new S3Client({
   region: "ap-northeast-1",
-  credentials: {
-    accessKeyId: process.env.accessKeyId!,
-    secretAccessKey: process.env.secretAccessKey!,
-  },
+  credentials: getCredentials(),
 });
 
 export const testaws = async () => {
