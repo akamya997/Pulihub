@@ -17,7 +17,7 @@ npm ci
 ### Run server
 
 ```
-npm start
+npm run dev
 ```
 
 ## Thanks to
