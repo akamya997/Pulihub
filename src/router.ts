@@ -48,10 +48,13 @@ function bhpanLink(req: express.Request, res: express.Response) {
     rejectUnauthorized: false,
   });
   const data = req.body;
-  axios.post("https://bhpan.buaa.edu.cn/api/v1/link?method=osdownload", data, { httpsAgent })
-  .then((response) => {
-    res.json(response.data);
-  })
+  axios
+    .post("https://bhpan.buaa.edu.cn/api/v1/link?method=osdownload", data, {
+      httpsAgent,
+    })
+    .then((response) => {
+      res.json(response.data);
+    });
 }
 
 export function route(app: express.Express) {

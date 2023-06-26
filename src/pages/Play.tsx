@@ -13,10 +13,7 @@ async function getData() {
 async function getLink(data: any) {
   if (data == undefined) return "";
   if (data["type"] == "bhpan") {
-    const res = await axios.post(
-      "/api/link/bhpan",
-      data["postdata"]
-    );
+    const res = await axios.post("/api/link/bhpan", data["postdata"]);
     console.log(res.data["authrequest"][1]);
     return res.data["authrequest"][1];
   } else {
@@ -48,13 +45,14 @@ const Play: React.FC = () => {
         {
           src: link,
           type: "video/mp4",
-        }
-      ]
-    }
-  }
+          poster: data ? data["poster"] : "",
+        },
+      ],
+    },
+  };
   return (
     <>
-    <Plyr {...plyrProps} />
+      <Plyr {...plyrProps} />
       <div id="vinfo" className="m-2 mt-3">
         <h4 id="vtitle" className="pt-2 pb-2">
           {data ? data["title"] : ""}
