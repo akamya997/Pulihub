@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import Plyr from "plyr-react";
+import "plyr-react/plyr.css";
 
 async function getData() {
   const res = await axios.get("/api/data");
@@ -13,11 +15,10 @@ async function getLink(data: any) {
   if (data["type"] == "bhpan") {
     const res = await axios.post(
       "/api/link/bhpan",
-      // "https://bhpan.buaa.edu.cn/api/v1/link?method=osdownload",
       data["postdata"]
     );
-    console.log(res);
-    return res;
+    console.log(res.data["authrequest"][1]);
+    return res.data["authrequest"][1];
   } else {
     return data["link"];
   }
@@ -39,11 +40,21 @@ const Play: React.FC = () => {
       }
     });
   }, [vcode]);
+  const plyrProps = {
+    source: {
+      type: "video" as Plyr.MediaType,
+      title: data ? data["title"] : "",
+      sources: [
+        {
+          src: link,
+          type: "video/mp4",
+        }
+      ]
+    }
+  }
   return (
     <>
-      <video playsInline controls>
-        <source src={link} type="video/mp4" />
-      </video>
+    <Plyr {...plyrProps} />
       <div id="vinfo" className="m-2 mt-3">
         <h4 id="vtitle" className="pt-2 pb-2">
           {data ? data["title"] : ""}

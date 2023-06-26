@@ -8,12 +8,6 @@ a:hover {
   text-decoration: none;
 }
 
-#dl-btn,
-#player,
-#vinfo {
-  display: none;
-}
-
 #dl-btn {
   margin-left: 1em;
 }
