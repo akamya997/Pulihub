@@ -2,7 +2,6 @@ import express from "express";
 import * as fs from "fs";
 import { bhpan, fileRecoder } from "./recoder";
 
-
 function insertData(inserter: any, data: any, res: express.Response) {
   console.log("inserting");
   inserter(data)

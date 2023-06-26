@@ -1,21 +1,21 @@
 import React from "react";
-import { useState } from 'react';
+import { useState } from "react";
 import axios from "axios";
 
 async function getData() {
-  const res = await axios.get('http://localhost:8081/api/data');
+  const res = await axios.get("http://localhost:8081/api/data");
   return res.data;
 }
 
 const Home: React.FC = () => {
-    const [videos, setVideos] = useState<JSX.Element[]>();
+  const [videos, setVideos] = useState<JSX.Element[]>();
   React.useEffect(() => {
     getData().then((res) => {
-      const vids:string[] = [];
-      for(const key in res) {
+      const vids: string[] = [];
+      for (const key in res) {
         vids.push(key);
       }
-      const listItems = vids.map((key:string) => {
+      const listItems = vids.map((key: string) => {
         const url = "/play/" + key;
         return (
           <div className="col mb-4" key={key}>
@@ -23,18 +23,14 @@ const Home: React.FC = () => {
               <a href={url}>
                 <img src={res[key]["poster"]} className="card-img-top" />
                 <div className="card-body">
-                  <h5 className="card-title">
-                    {res[key]["title"]}
-                  </h5>
-                  <p className="card-text">
-                    {res[key]["desc"]}
-                  </p>
+                  <h5 className="card-title">{res[key]["title"]}</h5>
+                  <p className="card-text">{res[key]["desc"]}</p>
                 </div>
               </a>
             </div>
           </div>
         );
-      })
+      });
       console.log(listItems);
       setVideos(listItems);
     });
@@ -44,7 +40,7 @@ const Home: React.FC = () => {
     <div id="vlist" className="row row-cols-1 row-cols-md-3">
       {videos}
     </div>
-  )
-}
+  );
+};
 
 export default Home;
