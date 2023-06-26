@@ -130,7 +130,7 @@ function showPlayer(jsondata, vcode) {
   }
 }
 
-$(document).ready(function () {
-  var vcode = GetUrlValue("vcode");
-  showList(vcode);
-});
+// $(document).ready(function () {
+//   var vcode = GetUrlValue("vcode");
+//   showList(vcode);
+// });

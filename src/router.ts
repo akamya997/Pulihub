@@ -1,12 +1,7 @@
 import express from "express";
 import * as fs from "fs";
 import { bhpan, fileRecoder } from "./recoder";
-// import path from "path";
-// import { fileURLToPath } from 'url';
 
-// const __filename = fileURLToPath(import.meta.url);
-
-// const __dirname = path.dirname(__filename);
 
 function insertData(inserter: any, data: any, res: express.Response) {
   console.log("inserting");
@@ -48,7 +43,6 @@ function dataPost(req: express.Request, res: express.Response) {
 }
 
 export function route(app: express.Express) {
-  app.use("/", express.static("./static"));
   app.get("/api/data", (_req: express.Request, res: express.Response) => {
     fs.readFile("static/video.json", function (_err, data) {
       res.setHeader("Content-Type", "application/json");
