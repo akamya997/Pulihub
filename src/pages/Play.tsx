@@ -4,7 +4,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 async function getData() {
-  const res = await axios.get("http://localhost:8081/api/data");
+  const res = await axios.get("/api/data");
   return res.data;
 }
 
@@ -12,7 +12,8 @@ async function getLink(data: any) {
   if (data == undefined) return "";
   if (data["type"] == "bhpan") {
     const res = await axios.post(
-      "https://bhpan.buaa.edu.cn/api/v1/link?method=osdownload",
+      "/api/link/bhpan",
+      // "https://bhpan.buaa.edu.cn/api/v1/link?method=osdownload",
       data["postdata"]
     );
     console.log(res);

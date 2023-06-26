@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 
 async function getData() {
-  const res = await axios.get("http://localhost:8081/api/data");
+  const res = await axios.get("/api/data");
   return res.data;
 }
 
@@ -16,7 +16,7 @@ const Home: React.FC = () => {
         vids.push(key);
       }
       const listItems = vids.map((key: string) => {
-        const url = "/play/" + key;
+        const url = "play/" + key;
         return (
           <div className="col mb-4" key={key}>
             <div className="card h-100">

@@ -5,7 +5,7 @@ import Play from "./pages/Play";
 
 const PageRouter: React.FC = () => {
   return (
-    <Router>
+    <Router basename="pulipuli">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/play/:vcode" element={<Play />} />
