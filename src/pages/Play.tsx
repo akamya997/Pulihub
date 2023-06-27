@@ -4,16 +4,17 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Plyr from "plyr-react";
 import "plyr-react/plyr.css";
+import { getData } from "../service";
 
-async function getData() {
-  const res = await axios.get("/api/data");
-  return res.data;
-}
 
 async function getLink(data: any) {
   if (data == undefined) return "";
   if (data["type"] == "bhpan") {
-    const res = await axios.post("/api/link/bhpan", data["postdata"]);
+    const res = await axios.post(
+      "https://bhpan.buaa.edu.cn/api/v1/link?method=osdownload",
+      data["postdata"],
+      { headers: { "Content-Type": "text/plain" } }
+    );
     console.log(res.data["authrequest"][1]);
     return res.data["authrequest"][1];
   } else {

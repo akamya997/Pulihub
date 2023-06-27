@@ -11,10 +11,6 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.8/plyr.css"
-    />
   </head>
   <body>
     <nav
@@ -37,13 +33,7 @@
           <li class="nav-item active">
             <a class="nav-link" href="?">主页</a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" onclick="showAdd()" href="#">添加</a>
-          </li>
         </ul>
-        <a id="dl-btn" class="btn btn-outline-success" download
-          >下载后更流畅哦</a
-        >
       </div>
     </nav>
     <div class="container">
@@ -81,170 +71,6 @@
             >
               好哒
             </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="modal fade"
-      id="add_box"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="tipstitle"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="tipstitle">添加一条记录</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-              onclick="closeAdd()"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <!-- add form -->
-            <div>
-              <div class="form-group">
-                <label for="type">Type</label>
-                <select
-                  name="type"
-                  id="type"
-                  class="form-control"
-                  onchange="changeType(this)"
-                >
-                  <option>bhpan</option>
-                  <option>File</option>
-                </select>
-              </div>
-              <!-- bhpan form -->
-              <form id="bhpan_form">
-                <div class="form-group">
-                  <label for="uid">UID</label>
-                  <input
-                    name="uid"
-                    type="text"
-                    class="form-control"
-                    placeholder="Unique ID."
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="link">Link</label>
-                  <input
-                    name="link"
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter link."
-                  />
-                  <small id="linkHelp" class="form-text text-muted"
-                    >输入Http分享链接中的神秘代码，比如DC5383C76AEA2D61BCF30D0E3F8B36D7。</small
-                  >
-                </div>
-                <div class="form-group">
-                  <label for="poster">poster</label>
-                  <input
-                    name="poster"
-                    type="text"
-                    class="form-control"
-                    placeholder="海报URL"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="title">title</label>
-                  <input
-                    name="title"
-                    type="text"
-                    class="form-control"
-                    placeholder="标题"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="desc">描述</label>
-                  <input
-                    name="desc"
-                    type="text"
-                    class="form-control"
-                    placeholder="字幕组"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="category">Type</label>
-                  <select name="category" id="category" class="form-control">
-                    <option>anime</option>
-                    <option>live</option>
-                  </select>
-                </div>
-              </form>
-              <form id="File_form" style="display: none">
-                <div class="form-group">
-                  <label for="uid">UID</label>
-                  <input
-                    name="uid"
-                    type="text"
-                    class="form-control"
-                    placeholder="Unique ID."
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="link">Link</label>
-                  <input
-                    name="link"
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter link"
-                  />
-                  <small id="linkHelp" class="form-text text-muted"
-                    >输入Mp4文件的URL链接。</small
-                  >
-                </div>
-                <div class="form-group">
-                  <label for="poster">poster</label>
-                  <input
-                    name="poster"
-                    type="text"
-                    class="form-control"
-                    placeholder="海报URL"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="title">title</label>
-                  <input
-                    name="title"
-                    type="text"
-                    class="form-control"
-                    placeholder="标题"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="desc">描述</label>
-                  <input
-                    name="desc"
-                    type="text"
-                    class="form-control"
-                    placeholder="字幕组"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="category">Type</label>
-                  <select name="category" id="category" class="form-control">
-                    <option>anime</option>
-                    <option>live</option>
-                  </select>
-                </div>
-              </form>
-              <button
-                type="button"
-                class="btn btn-secondary"
-                onclick="submitItem()"
-              >
-                提交
-              </button>
-            </div>
           </div>
         </div>
       </div>

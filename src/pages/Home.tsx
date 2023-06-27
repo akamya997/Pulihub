@@ -1,11 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios";
-
-async function getData() {
-  const res = await axios.get("/api/data");
-  return res.data;
-}
+import { getData } from "../service";
 
 const Home: React.FC = () => {
   const [videos, setVideos] = useState<JSX.Element[]>();

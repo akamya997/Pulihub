@@ -1,11 +1,11 @@
 {
   "name": "pulihub",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An online video hub.",
   "type": "module",
   "scripts": {
-    "dev": "concurrently 'vite' 'nodemon server.ts'",
+    "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
