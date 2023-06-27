@@ -8,7 +8,7 @@ const PageRouter: React.FC = () => {
     <Router basename="pulipuli">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/play/:vcode" element={<Play />} />
+        <Route path="/play/:vcode/:pid" element={<Play />} />
       </Routes>
     </Router>
   );

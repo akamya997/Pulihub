@@ -6,7 +6,6 @@ import Plyr from "plyr-react";
 import "plyr-react/plyr.css";
 import { getData } from "../service";
 
-
 async function getLink(data: any) {
   if (data == undefined) return "";
   if (data["type"] == "bhpan") {
@@ -23,7 +22,8 @@ async function getLink(data: any) {
 }
 
 const Play: React.FC = () => {
-  const { vcode } = useParams();
+  const { vcode, pid } = useParams();
+  const vPid = Number(pid) - 1;
   const [data, setData] = useState();
   const [link, setLink] = useState("");
   React.useEffect(() => {
@@ -32,7 +32,7 @@ const Play: React.FC = () => {
         const data = res[vcode];
         console.log(data);
         setData(data);
-        getLink(data).then((res) => {
+        getLink(data["videos"][vPid]).then((res) => {
           setLink(res);
         });
       }
@@ -55,6 +55,38 @@ const Play: React.FC = () => {
     <>
       <Plyr {...plyrProps} />
       <div id="vinfo" className="m-2 mt-3">
+        <div className="float-end">
+          <ul className="pagination">
+            {vPid ? (
+              <li className="page-item">
+                <a
+                  className="page-link"
+                  href={"/pulipuli/play/" + vcode + "/" + vPid.toString()}
+                >
+                  上一集
+                </a>
+              </li>
+            ) : (
+              <li className="page-item disabled">
+                <a className="page-link">上一集</a>
+              </li>
+            )}
+            {data !== undefined && vPid == data["videos"].length - 1 ? (
+              <li className="page-item disabled">
+                <a className="page-link">下一集</a>
+              </li>
+            ) : (
+              <li className="page-item">
+                <a
+                  className="page-link"
+                  href={"/pulipuli/play/" + vcode + "/" + (vPid + 2).toString()}
+                >
+                  下一集
+                </a>
+              </li>
+            )}
+          </ul>
+        </div>
         <h4 id="vtitle" className="pt-2 pb-2">
           {data ? data["title"] : ""}
         </h4>
