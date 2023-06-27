@@ -1,4 +1,4 @@
 node_modules
-static/video.json
+public/video.json
 .env
 dist
